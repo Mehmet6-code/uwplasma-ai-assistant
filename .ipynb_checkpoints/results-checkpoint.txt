@@ -1,0 +1,47 @@
+Ask: How do I run vmec_jax?
+
+According to README.md, you can install (editable) and run the showcase by:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -e .
+python examples/showcase_axisym_input_to_wout.py --suite
+```
+
+Or, if you want the bundled reference outputs and mgrid files, fetch the assets once by:
+
+```bash
+python tools/fetch_assets.py
+```
+
+Note: You can also run the CLI (VMEC2000-style executable) with a single-grid input file:
+
+```bash
+vmec_jax examples/data/input.circular_tokamak
+```
+
+----------------------------------------
+
+Ask: What are the steps from input to wout?
+
+The steps from input to wout in this script are:
+
+1. Load the input file: `input_path = data_dir / f"input.{case}"`
+2. Run the vmec_jax solver with the loaded input: `run = vj.run_fixed_boundary(input_path, ...`
+3. Write the output of the solver to a wout file: `wout_new = vj.load_wout(out_wout_path)`
+4. Optionally, run an external VMEC2000 solver and load its output as a reference wout: `wout_ref = vj.load_wout(ref_wout_path)`
+
+----------------------------------------
+
+Ask: What values are in the output?
+
+According to OUTPUT SUMMARY: wout_summary.txt, the values present are:
+
+* aspect: 2.6427407334522464
+* volume: 633.7993467060759
+* nfp: 1
+* mpol: 12
+* ntor: 0
+
+----------------------------------------
