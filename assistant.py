@@ -1,6 +1,6 @@
 import ollama
 
-with open ("README.md") as f:
+with open ("vmec_readme.md") as f:
     readme = f.read()
 with open ("showcase_axisym_input_to_wout.py") as f:
     example = f.read()
